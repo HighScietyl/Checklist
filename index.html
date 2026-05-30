@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mydiploma — Germaniya Checklist</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a237e;
+    --orange: #f04e12;
+    --navy-light: #283593;
+    --orange-light: #ff6d3a;
+    --bg: #f5f6fa;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #e8eaf6;
+    --text: #1a1f36;
+    --check-done: #22c55e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(240,78,18,0.18);
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: 60px; bottom: -80px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(240,78,18,0.10);
+  }
+  .logo-area { display: flex; align-items: center; gap: 16px; z-index: 1; }
+  .logo-icon {
+    width: 52px; height: 52px;
+  }
+  .logo-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+  .header-right { z-index: 1; text-align: right; }
+  .country-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--orange);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    padding: 10px 22px;
+    border-radius: 50px;
+    letter-spacing: 0.3px;
+  }
+  .flag { font-size: 22px; }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    background: white;
+    padding: 20px 40px;
+    border-bottom: 2px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .progress-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    min-width: 120px;
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 10px;
+    background: var(--gray-light);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--navy), var(--orange));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+  .progress-count {
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--orange);
+    white-space: nowrap;
+  }
+
+  /* MAIN CONTENT */
+  .main { max-width: 900px; margin: 0 auto; padding: 36px 20px 0; }
+
+  /* INTRO */
+  .intro-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 18px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card::after {
+    content: '🎓';
+    position: absolute;
+    right: 30px;
+    font-size: 80px;
+    opacity: 0.12;
+  }
+  .intro-text h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .intro-text p {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+  .intro-icon {
+    width: 56px; height: 56px;
+    background: var(--orange);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 28px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+  .section-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-icon.orange { background: var(--orange); }
+  .section-icon.navy { background: var(--navy); }
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+  .step-badge {
+    margin-left: auto;
+    background: var(--orange);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .step-badge.navy-bg { background: var(--navy); }
+
+  /* CHECKLIST CARD */
+  .checklist-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(26,35,126,0.07);
+    overflow: hidden;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #f0f1f8;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item:hover { background: #fafbff; }
+  .check-item.checked { background: #f0fdf4; }
+  .check-item.checked .item-text { color: #86a38a; text-decoration: line-through; }
+
+  .checkbox {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    border: 2.5px solid #d1d5db;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s;
+    background: white;
+  }
+  .check-item.checked .checkbox {
+    background: var(--check-done);
+    border-color: var(--check-done);
+  }
+  .checkbox svg {
+    display: none;
+    width: 13px; height: 13px;
+  }
+  .check-item.checked .checkbox svg { display: block; }
+
+  .item-content { flex: 1; }
+  .item-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .item-note {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .item-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 4px;
+  }
+  .tag-required { background: #fff0ec; color: var(--orange); }
+  .tag-optional { background: #e8eaf6; color: var(--navy); }
+  .tag-warning { background: #fffbeb; color: #d97706; }
+  .tag-mygov { background: #e0f2fe; color: #0369a1; }
+
+  /* ALERT BOX */
+  .alert {
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .alert-orange { background: #fff4ee; border-left: 4px solid var(--orange); }
+  .alert-navy { background: #eef0fb; border-left: 4px solid var(--navy); }
+  .alert-green { background: #f0fdf4; border-left: 4px solid #22c55e; }
+  .alert strong { font-weight: 700; }
+
+  /* TIMELINE */
+  .timeline {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 12px rgba(26,35,126,0.07);
+    margin-bottom: 28px;
+  }
+  .timeline-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tl-items { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .tl-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 32px;
+    flex-shrink: 0;
+  }
+  .tl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--orange);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .tl-line {
+    width: 2px;
+    flex: 1;
+    min-height: 28px;
+    background: linear-gradient(var(--orange), var(--navy));
+    margin: 2px 0;
+  }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-content {
+    padding: 0 0 20px 16px;
+  }
+  .tl-month {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tl-desc {
+    font-size: 13px;
+    color: var(--text);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* FOOTER */
+  .footer-note {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 24px 28px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .footer-note .fn-icon { font-size: 32px; flex-shrink: 0; }
+  .footer-note h4 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .footer-note p { font-size: 13px; opacity: 0.85; line-height: 1.4; }
+  .footer-note strong { color: var(--orange-light); }
+
+  @media print {
+    body { background: white; }
+    .progress-wrap { display: none; }
+    .check-item:hover { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-area">
+    <!-- SVG logo based on brand mark -->
+    <svg class="logo-icon" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Shield shape top-left: navy, book -->
+      <path d="M5 5 H48 V52 Q30 52 5 70 Z" fill="#1a237e" rx="8"/>
+      <!-- Shield shape top-right: orange, person -->
+      <path d="M52 5 H95 Q95 5 95 12 V52 Q70 52 52 52 Z" fill="#f04e12" rx="8"/>
+      <!-- Shield shape bottom-left: orange, plane -->
+      <path d="M5 56 Q5 105 50 108 Q30 90 5 70 Z" fill="#f04e12"/>
+      <!-- Shield shape bottom-right: navy, graduation -->
+      <path d="M95 56 Q95 105 50 108 Q70 90 95 70 Z" fill="#1a237e"/>
+      <!-- Book icon top-left -->
+      <text x="18" y="38" font-size="22" fill="white">📖</text>
+      <!-- Person icon top-right -->
+      <text x="60" y="38" font-size="20" fill="white">👤</text>
+      <!-- Plane bottom-left -->
+      <text x="12" y="88" font-size="20" fill="white">✈️</text>
+      <!-- Graduation bottom-right -->
+      <text x="60" y="90" font-size="20" fill="white">🎓</text>
+    </svg>
+    <span class="logo-text">mydiploma</span>
+  </div>
+  <div class="header-right">
+    <div class="country-badge">
+      <span class="flag">🇩🇪</span>
+      GERMANIYA
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <span class="progress-label">📋 Bajarildi:</span>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+  </div>
+  <span class="progress-count" id="progressCount">0 / 0</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <div class="intro-icon">🇩🇪</div>
+    <div class="intro-text">
+      <h2>Germaniyada o'qish uchun hujjatlar ro'yxati</h2>
+      <p>Har bir bandni bajarganingizdan so'ng belgilang. Barcha hujjatlar notarial tarjima va apostil bilan taqdim etilishi shart.</p>
+    </div>
+  </div>
+
+  <!-- ===== BOSQICH 1 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon orange">📄</div>
+      <div>
+        <div class="section-title">BOSQICH 1 — Universitetga topshirish uchun hujjatlar</div>
+        <div class="section-subtitle">Universitetga ariza yuborishdan oldin tayyorlanishi kerak</div>
+      </div>
+      <div class="step-badge">Majburiy</div>
+    </div>
+
+    <div class="alert alert-navy">
+      <span class="alert-icon">ℹ️</span>
+      <div>Quyidagi hujjatlar <strong>asl nusxa + rus/nemis tiliga notarial tarjima</strong> bilan taqdim etiladi. Ta'lim hujjatlari <strong>APOSTIL</strong> bilan tasdiqlanishi shart.</div>
+    </div>
+
+    <div class="checklist-card" id="list1">
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Xorijga chiqish pasporti (zagranpasport)</div>
+          <div class="item-note">Amal qilish muddati kamida 18 oy qolgan bo'lishi kerak. Barcha sahifalarning nusxasi.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">9-sinf maktab attestati</div>
+          <div class="item-note">Asl nusxa + notarial tarjima (nemis yoki rus tiliga) + APOSTIL</div>
+          <span class="item-tag tag-required">Majburiy</span>
+          <span class="item-tag tag-warning">APOSTIL kerak</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">11-sinf maktab attestati</div>
+          <div class="item-note">Asl nusxa + notarial tarjima + APOSTIL. Baholar vedomosti bilan birga.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+          <span class="item-tag tag-warning">APOSTIL kerak</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Kollej yoki texnikum diplomi (agar mavjud bo'lsa)</div>
+          <div class="item-note">Asl nusxa + tarjima + APOSTIL</div>
+          <span class="item-tag tag-optional">Ixtiyoriy</span>
+          <span class="item-tag tag-warning">APOSTIL kerak</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Sudlanmaganlik to'g'risida ma'lumotnoma</div>
+          <div class="item-note">my.gov.uz saytidan yoki IIV orqali olinadi. Tarjima qilinishi shart.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+          <span class="item-tag tag-mygov">my.gov.uz</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Yashash joyi to'g'risida ma'lumotnoma (propiska)</div>
+          <div class="item-note">my.gov.uz saytidan elektron shaklda olinadi. Notarial tarjima kerak.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+          <span class="item-tag tag-mygov">my.gov.uz</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Ota-onaning ID kartasi (ikkalasining ham)</div>
+          <div class="item-note">Nusxa ko'chirma + notarial tarjima. Ba'zi universitetlar uchun talab qilinadi.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">APS Sertifikat (Akademik tekshiruv sertifikati)</div>
+          <div class="item-note">O'zbekistonlik talabalar uchun MAJBURIY. Germaniya elchixonasi orqali olinadi. 4–8 hafta davom etadi!</div>
+          <span class="item-tag tag-required">Majburiy</span>
+          <span class="item-tag tag-warning">⚠️ 4-8 hafta</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Motivatsiya maktubi (Motivationsschreiben)</div>
+          <div class="item-note">Nemis yoki ingliz tilida. Nima uchun bu yo'nalishni tanlaganingizni yozasiz. 1–2 sahifa.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">CV / Rezyume (Europass formati)</div>
+          <div class="item-note">europass.europa.eu saytida bepul yaratish mumkin. Nemis yoki ingliz tilida.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Til sertifikati (DSH / TestDaF / Goethe / IELTS)</div>
+          <div class="item-note">Nemis tilida o'qish uchun — DSH yoki TestDaF. Ingliz tilida dasturlar uchun — IELTS/TOEFL.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Tavsiya xatlari — 2 dona</div>
+          <div class="item-note">Maktab o'qituvchisi, kollej o'qituvchisi yoki ish beruvchidan. Nemis/ingliz tilida.</div>
+          <span class="item-tag tag-optional">Ko'pincha talab qilinadi</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">3×4 rasm — 6 dona</div>
+          <div class="item-note">Oq fonda, so'nggi 3 oy ichida olingan, professional rasm.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== BOSQICH 2 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon navy">🏛️</div>
+      <div>
+        <div class="section-title">BOSQICH 2 — Qabul xatini olgandan so'ng</div>
+        <div class="section-subtitle">Universitetdan "Zulassungsbescheid" kelgandan keyin amalga oshiriladi</div>
+      </div>
+      <div class="step-badge navy-bg">Viza oldidan</div>
+    </div>
+
+    <div class="alert alert-orange">
+      <span class="alert-icon">⚠️</span>
+      <div>Blokonto ochish <strong>kamida 4–6 hafta</strong> vaqt oladi. Oldinroq boshlang! 2024-yil normi — <strong>11.208 EUR</strong> (to'liq bir yillik).</div>
+    </div>
+
+    <div class="checklist-card">
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Universitetning rasmiy qabul xati (Zulassungsbescheid)</div>
+          <div class="item-note">Universitetdan keladi. Viza uchun asosiy hujjat. Asl nusxa saqlaning!</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Blokonto — 11.208 EUR bloklash</div>
+          <div class="item-note">Deutsche Bank, Fintiba (fintiba.de) yoki Expatrio (expatrio.com) orqali ochiladi. Bank ko'chirma kerak bo'ladi.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+          <span class="item-tag tag-warning">⚠️ Eng muhim!</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Sog'liq sug'urta polisi</div>
+          <div class="item-note">Germaniyada amal qiluvchi sug'urta. TK, AOK, Barmer kabi kassalar. Yoki travel insurance (viza uchun).</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Turar joy tasdiqnomasi</div>
+          <div class="item-note">Yotoqxona (Wohnheimzusage) yoki ijaraxona shartnomasi (Mietvertrag). Universitetdan so'rash mumkin.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== BOSQICH 3 ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon orange">✈️</div>
+      <div>
+        <div class="section-title">BOSQICH 3 — Talaba vizasi (Visum zu Studienzwecken)</div>
+        <div class="section-subtitle">Germaniya elchixonasiga topshiriladi — Toshkent</div>
+      </div>
+      <div class="step-badge">75 EUR to'lov</div>
+    </div>
+
+    <div class="alert alert-green">
+      <span class="alert-icon">✅</span>
+      <div>Viza ko'rib chiqish muddati odatda <strong>4–8 hafta</strong>. Elchixona intervyusi bo'lishi mumkin — javoblarga tayyorlanib boring!</div>
+    </div>
+
+    <div class="checklist-card">
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Viza anketa shakli (Antragsformular)</div>
+          <div class="item-note">Germaniya elchixonasi veb-saytidan yoki visagate.diplo.de orqali to'ldiriladi.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Pasport (asl nusxa + barcha sahifalarning nusxasi)</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Universitetning qabul xati (Zulassungsbescheid)</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Blokonto tasdiqi (11.208 EUR)</div>
+          <div class="item-note">Fintiba yoki Expatrio'dan kelgan tasdiqlash xati yoki Deutsche Bank ko'chirma.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Sog'liq sug'urta polisi</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Turar joy tasdiqnomasi</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Ta'lim hujjatlari (attestat, diplom) + tarjimalar</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">APS Sertifikat</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">O'quv rejasi (Studienplan)</div>
+          <div class="item-note">Universitetda nima o'qishni, qachon tugatishni ko'rsatuvchi reja. 1 sahifacha.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggle(this)">
+        <div class="checkbox"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-content">
+          <div class="item-text">Viza to'lovi — 75 EUR</div>
+          <div class="item-note">Elchixonada naqd yoki karta orqali to'lanadi.</div>
+          <span class="item-tag tag-required">Majburiy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note">
+    <span class="fn-icon">💬</span>
+    <div>
+      <h4>Savolingiz bormi? Biz yordamga tayyormiz!</h4>
+      <p>mydiploma agentligi barcha bosqichlarda — hujjat tayyorlashdan tortib, <strong>viza olishgacha</strong> — yongingizdadir. Konsultant bilan bog'laning.</p>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggle(el) {
+  el.classList.toggle('checked');
+  updateProgress();
+}
+function updateProgress() {
+  const all = document.querySelectorAll('.check-item');
+  const done = document.querySelectorAll('.check-item.checked');
+  const pct = all.length > 0 ? Math.round((done.length / all.length) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = done.length + ' / ' + all.length;
+}
+updateProgress();
+</script>
+</body>
+</html>
